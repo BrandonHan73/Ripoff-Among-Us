@@ -124,8 +124,25 @@ public class Main {
 
     public static void secureMove(double x, double y) {
         Coordinate endCoords = new Coordinate(playerCoordinate.getX(), playerCoordinate.getY());
+        boolean permission = true;
         endCoords.move(x, y);
-        if((0 < endCoords.getX()) && (endCoords.getX() < mapXSize - characterXSize) && (0 < endCoords.getY()) && (endCoords.getY() < mapYSize - characterYSize)) playerCoordinate.move(x, y);
+        if(!((0 < endCoords.getX()) && (endCoords.getX() < mapXSize - characterXSize) && (0 < endCoords.getY()) && (endCoords.getY() < mapYSize - characterYSize))) permission = false;
+        else {
+            for(int i = endCoords.getX(); i < endCoords.getX() + characterXSize; i++) {
+                for(int j = endCoords.getY(); j < endCoords.getY() + characterXSize; j++) {
+                    if(SkeldMapBoundaries.getLoc(i, j)) {
+                        permission = false;
+                        break;
+
+                    }
+
+                }
+                if(!permission) break;
+
+            }
+
+        }
+        if(permission) playerCoordinate.move(x, y);
 
     }
 
