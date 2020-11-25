@@ -21,7 +21,7 @@ public class Main {
         Coordinate c = new Coordinate(-100, 100);
 
         JLabel l = new JLabel(CharacterRight);
-        l.setBounds(100, 100, 440, 482);
+        l.setBounds(100, 100, 220, 241);
         frame.add(l);
 
         JLabel map = new JLabel(Map);
@@ -61,7 +61,7 @@ public class Main {
 
         });
 
-        l.setBounds(100, 101, 440, 482);
+        l.setBounds(100, 101, 220, 241);
         map.setBounds(-1001, -1000, 7090, 4120);
 
         int speed = 5;
@@ -84,7 +84,11 @@ public class Main {
 
             }
 
-            l.setBounds(900, 100, 440, 482);
+            int wantedX, wantedY;
+            wantedY = (frame.getSize().height / 2) - 120;
+            wantedX = (frame.getSize().width / 2) - 110;
+
+            l.setBounds(wantedX, wantedY, 220, 241);
             map.setBounds(c.getX(), c.getY(), 7090, 4120);
 
             long time = System.currentTimeMillis();
