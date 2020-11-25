@@ -16,6 +16,8 @@ public class Main {
     static final int characterYSize = 120;
     static final double characterStartX = 3530;
     static final double characterStartY = 854;
+    static final int shadowHeight = 12;
+    static final int shadowWidth = 67;
 
     // Main variables
     private static JFrame frame;
@@ -128,8 +130,8 @@ public class Main {
         endCoords.move(x, y);
         if(!((0 < endCoords.getX()) && (endCoords.getX() < mapXSize - characterXSize) && (0 < endCoords.getY()) && (endCoords.getY() < mapYSize - characterYSize))) permission = false;
         else {
-            for(int i = endCoords.getX(); i < endCoords.getX() + characterXSize; i++) {
-                for(int j = endCoords.getY(); j < endCoords.getY() + characterXSize; j++) {
+            for(int i = endCoords.getX() + ((characterXSize - shadowWidth) / 2); i < endCoords.getX() + characterXSize - ((characterXSize - shadowWidth) / 2); i++) {
+                for(int j = endCoords.getY() + characterYSize - shadowHeight; j < endCoords.getY() + characterYSize; j++) {
                     if(SkeldMapBoundaries.getLoc(i, j)) {
                         permission = false;
                         break;
