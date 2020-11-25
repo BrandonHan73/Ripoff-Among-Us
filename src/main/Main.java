@@ -13,7 +13,7 @@ public class Main {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        final ImageIcon CharacterRight = new ImageIcon("src/images/walking/right/right-front.png");
+        final ImageIcon CharacterRight = new ImageIcon("src/images/idle/right.png");
         final ImageIcon CharacterLeft = new ImageIcon("src/images/idle/left.png");
         final ImageIcon Map = new ImageIcon("src/images/map.jpg");
 
@@ -21,10 +21,12 @@ public class Main {
         Coordinate c = new Coordinate(-2600, -300);
 
         JLabel l = new JLabel(CharacterRight);
-        frame.add(l);
+        frame.add(JCharacter.getInstance().get());
 
         JLabel map = new JLabel(Map);
         frame.add(map);
+
+        frame.add(JCharacter.getInstance().get());
 
         frame.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
@@ -83,8 +85,11 @@ public class Main {
             wantedY = (frame.getSize().height / 2) - 120;
             wantedX = (frame.getSize().width / 2) - 110;
 
+            JCharacter.getInstance().get().setBounds(100, 100, 87, 120);
             l.setBounds(wantedX, wantedY, 220, 241);
             map.setBounds(c.getX(), c.getY(), 7090, 4120);
+
+            JCharacter.getInstance().update();
 
             long time = System.currentTimeMillis();
             while(true) {
