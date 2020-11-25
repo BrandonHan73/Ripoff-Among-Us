@@ -10,17 +10,23 @@ public class Main {
     static final ImageIcon MapImage = new ImageIcon("src/images/map.jpg");
     static final int characterSpeed = 5;
     static final double rt2 = Math.sqrt(2);
+    static final int mapXSize = 7090;
+    static final int mapYSize = 4120;
+    static final int characterXSize = 87;
+    static final int characterYSize = 120;
+    static final double characterStartX = 3530;
+    static final double characterStartY = 854;
 
     // Main variables
     private static JFrame frame;
     private static JLabel map;
     private static Keyboard keyboardState;
-    private static Coordinate mapCoordinate;
+    private static Coordinate playerCoordinate;
 
     public static void main(String[] args) {
 
         // Set up window
-        frame = new JFrame("window");
+        frame = new JFrame("Ripoff Among Us because I'm bored");
         frame.setVisible(true);
         frame.setSize(1900, 1100);
         frame.setLayout(null);
@@ -31,7 +37,7 @@ public class Main {
 
         // Background
         map = new JLabel(MapImage);
-        mapCoordinate  = new Coordinate(-2600, -300);
+        playerCoordinate  = new Coordinate(characterStartX, characterStartY);
 
         // Add character and frame to window
         frame.add(JCharacter.getInstance().get());
@@ -81,11 +87,11 @@ public class Main {
 
     public static void resetBounds() {
         int wantedX, wantedY;
-        wantedY = (frame.getSize().height / 2) - 120;
-        wantedX = (frame.getSize().width / 2) - 110;
+        wantedX = (frame.getSize().width / 2) - characterXSize / 2;
+        wantedY = (frame.getSize().height / 2) - characterYSize / 2;
 
-        JCharacter.getInstance().get().setBounds(wantedX, wantedY, 87, 120);
-        map.setBounds(mapCoordinate.getX(), mapCoordinate.getY(), 7090, 4120);
+        JCharacter.getInstance().get().setBounds(wantedX, wantedY, characterXSize, characterYSize);
+        map.setBounds(0-playerCoordinate.getX() + wantedX, 0-playerCoordinate.getY() + wantedY, 7090, 4120);
 
     }
 
@@ -103,12 +109,19 @@ public class Main {
             double wantedSpeed;
             if ((keyboardState.w != keyboardState.s) && (keyboardState.a != keyboardState.d)) wantedSpeed = characterSpeed / rt2;
             else wantedSpeed = characterSpeed;
-            if(keyboardState.w) mapCoordinate.move(0, wantedSpeed);
-            if(keyboardState.a) mapCoordinate.move(wantedSpeed, 0);
-            if(keyboardState.s) mapCoordinate.move(0, 0-wantedSpeed);
-            if(keyboardState.d) mapCoordinate.move(0-wantedSpeed, 0);
+            if(keyboardState.w) secureMove(0, 0-wantedSpeed);
+            if(keyboardState.a) secureMove(0-wantedSpeed, 0);
+            if(keyboardState.s) secureMove(0, wantedSpeed);
+            if(keyboardState.d) secureMove(wantedSpeed, 0);
 
         }
+
+    }
+
+    public static void secureMove(double x, double y) {
+        Coordinate endCoords = new Coordinate(playerCoordinate.getX(), playerCoordinate.getY());
+        endCoords.move(x, y);
+        if((0 < endCoords.getX()) && (endCoords.getX() < mapXSize - characterXSize) && (0 < endCoords.getY()) && (endCoords.getY() < mapYSize - characterYSize)) playerCoordinate.move(x, y);
 
     }
 
