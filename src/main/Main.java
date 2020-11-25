@@ -74,6 +74,10 @@ public class Main {
 
         });
 
+        // Setting boundaries
+        SkeldMapBoundaries.setBoundaries();
+        SkeldMapBoundaries.drawBoundaries();
+
         // Game loop
         while(true) {
             moveAll();
