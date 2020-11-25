@@ -1,23 +1,22 @@
 package main;
 
-import javax.net.ssl.SSLKeyException;
 import java.util.ArrayList;
 
 public class MapBoundaries {
 
-    private static ArrayList<Coordinate> coords;
     private static boolean[][] map;
 
     private MapBoundaries() {}
 
-    private static void setBoundaries() {
-        coords = new ArrayList<Coordinate>();
+    private static void init() {
         map = new boolean[7090][4120];
 
     }
 
     public static void setSkeldBoundaries() {
-        setBoundaries();
+        ArrayList<Coordinate> coords;
+
+        coords = new ArrayList<Coordinate>();
         coords.add(new Coordinate(2973, 532));
         coords.add(new Coordinate(3282, 220));
         coords.add(new Coordinate(4276, 220));
@@ -25,10 +24,24 @@ public class MapBoundaries {
         coords.add(new Coordinate(4731, 916));
         coords.add(new Coordinate(4741, 916));
         coords.add(new Coordinate(4786, 957));
+        drawBoundaries(coords);
+
+        coords = new ArrayList<Coordinate>();
+        coords.add(new Coordinate(2391, 1328));
+        coords.add(new Coordinate(2200, 1328));
+        coords.add(new Coordinate(2200, 1922));
+        coords.add(new Coordinate(2328, 2084));
+        coords.add(new Coordinate(3136, 2084));
+        coords.add(new Coordinate(3136, 2013));
+        coords.add(new Coordinate(2857, 1741));
+        coords.add(new Coordinate(2857, 1328));
+        coords.add(new Coordinate(2638, 1328));
+        drawBoundaries(coords);
 
     }
 
-    public static void drawBoundaries() {
+    public static void resetMap() {
+        init();
         for(boolean[] i : map) {
             for(boolean j : i) {
                 j = false;
@@ -36,6 +49,10 @@ public class MapBoundaries {
             }
 
         }
+
+    }
+
+    public static void drawBoundaries(ArrayList<Coordinate> coords) {
         for(int i = 0; i < coords.size() - 1; i++) {
             Coordinate c1 = coords.get(i);
             Coordinate c2 = coords.get(i + 1);

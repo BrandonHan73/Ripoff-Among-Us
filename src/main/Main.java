@@ -77,8 +77,8 @@ public class Main {
         });
 
         // Setting boundaries
+        MapBoundaries.resetMap();
         MapBoundaries.setSkeldBoundaries();
-        MapBoundaries.drawBoundaries();
 
         // Game loop
         while(true) {
