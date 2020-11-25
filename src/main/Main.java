@@ -25,6 +25,8 @@ public class Main {
     private static Keyboard keyboardState;
     private static Coordinate playerCoordinate;
 
+    static JCompanion xap = new JCompanion(100, "src/images/companion", 58, 80, 5);
+
     public static void main(String[] args) {
 
         // Set up window
@@ -44,6 +46,7 @@ public class Main {
         // Adding to window
         frame.add(JCharacter.getInstance().get());
         frame.add(JCompanion.getInstance().get());
+        frame.add(xap.get());
         frame.add(map);
 
         // Add key listener
@@ -87,6 +90,7 @@ public class Main {
             resetBounds();
             JCharacter.getInstance().update();
             JCompanion.getInstance().update(playerCoordinate.getX(), playerCoordinate.getY());
+            xap.update(playerCoordinate.getX(), playerCoordinate.getY());
             wait(10);
 
         }
@@ -99,7 +103,8 @@ public class Main {
         wantedY = (frame.getSize().height / 2) - characterYSize / 2;
 
         JCharacter.getInstance().get().setBounds(wantedX, wantedY, characterXSize, characterYSize);
-        JCompanion.getInstance().get().setBounds(JCompanion.getInstance().getLocation().getX() - playerCoordinate.getX() + wantedX, JCompanion.getInstance().getLocation().getY() - playerCoordinate.getY() + wantedY, JCompanion.width, JCompanion.height);
+        JCompanion.getInstance().get().setBounds(JCompanion.getInstance().getLocation().getX() - playerCoordinate.getX() + wantedX, JCompanion.getInstance().getLocation().getY() - playerCoordinate.getY() + wantedY, JCompanion.getInstance().getWidth(), JCompanion.getInstance().getHeight());
+        xap.get().setBounds(xap.getLocation().getX() - playerCoordinate.getX() + wantedX, xap.getLocation().getY() - playerCoordinate.getY() + wantedY, xap.getWidth(), xap.getHeight());
         map.setBounds(0-playerCoordinate.getX() + wantedX, 0-playerCoordinate.getY() + wantedY, 7090, 4120);
 
     }
