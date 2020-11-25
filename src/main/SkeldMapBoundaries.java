@@ -16,6 +16,8 @@ public class SkeldMapBoundaries {
 
         coords.add(new Coordinate(2974, 533));
         coords.add(new Coordinate(3282, 223));
+        coords.add(new Coordinate(4277, 221));
+        coords.add(new Coordinate(4730, 673));
 
     }
 
