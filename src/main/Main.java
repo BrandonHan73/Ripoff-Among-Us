@@ -13,14 +13,18 @@ public class Main {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        final ImageIcon CharacterRight = new ImageIcon("D:/Pictures/among-us-character.png");
+        final ImageIcon CharacterLeft = new ImageIcon("D:/Pictures/among-us-character-left.png");
+        final ImageIcon Map = new ImageIcon("D:/Pictures/among-us-map.jpg");
+
         Keyboard k = new Keyboard();
         Coordinate c = new Coordinate(-100, 100);
 
-        JLabel l = new JLabel(new ImageIcon("D:/Pictures/among-us-character.png"));
+        JLabel l = new JLabel(CharacterRight);
         l.setBounds(100, 100, 440, 482);
         frame.add(l);
 
-        JLabel map = new JLabel(new ImageIcon("D:/Pictures/among-us-map.jpg"));
+        JLabel map = new JLabel(Map);
         map.setBounds(-1000, -1000, 7090, 4120);
         frame.add(map);
 
@@ -34,9 +38,9 @@ public class Main {
 
                 switch(key) {
                     case 'w': k.w = true; break;
-                    case 'a': k.a = true; break;
+                    case 'a': k.a = true; l.setIcon(CharacterLeft); break;
                     case 's': k.s = true; break;
-                    case 'd': k.d = true; break;
+                    case 'd': k.d = true; l.setIcon(CharacterRight); break;
 
                 }
 
