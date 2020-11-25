@@ -13,9 +13,9 @@ public class Main {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        final ImageIcon CharacterRight = new ImageIcon("D:/Pictures/among-us-character.png");
-        final ImageIcon CharacterLeft = new ImageIcon("D:/Pictures/among-us-character-left.png");
-        final ImageIcon Map = new ImageIcon("D:/Pictures/among-us-map.jpg");
+        final ImageIcon CharacterRight = new ImageIcon("src/images/among-us-character.png");
+        final ImageIcon CharacterLeft = new ImageIcon("src/images/among-us-character-left.png");
+        final ImageIcon Map = new ImageIcon("src/images/among-us-map.jpg");
 
         Keyboard k = new Keyboard();
         Coordinate c = new Coordinate(-2600, -300);
