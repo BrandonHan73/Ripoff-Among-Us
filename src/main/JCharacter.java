@@ -55,7 +55,6 @@ public class JCharacter {
 
     public void setState(state s) {
         currentState = s;
-        if(s == state.WALKING) time = System.currentTimeMillis();
 
     }
 

@@ -65,19 +65,50 @@ public class Main {
 
         while(true) {
             if(k.w) {
-                c.move(0, speed);
+                if (!k.a && !k.d) {
+                    c.move(0, speed);
 
-            }
-            if(k.a) {
-                c.move(speed, 0);
+                }
+                if(k.a) {
+                    c.move((speed / Math.sqrt(2)), (speed / Math.sqrt(2)));
+
+                }
+                if(k.d) {
+                    c.move(0-(speed / Math.sqrt(2)), (speed / Math.sqrt(2)));
+
+                }
 
             }
             if(k.s) {
-                c.move(0, 0-speed);
+                if (!k.a && !k.d) {
+                    c.move(0, 0-speed);
+
+                }
+                if(k.a) {
+                    c.move((speed / Math.sqrt(2)), 0-(speed / Math.sqrt(2)));
+
+                }
+                if(k.d) {
+                    c.move(0-(speed / Math.sqrt(2)), 0-(speed / Math.sqrt(2)));
+
+                }
 
             }
-            if(k.d) {
-                c.move(0-speed, 0);
+
+            if(!k.w && !k.s) {
+                if(k.a) {
+                    c.move(speed, 0);
+
+                }
+                if(k.d) {
+                    c.move(0-speed, 0);
+
+                }
+
+            }
+
+            if(!k.w && !k.a && !k.s && !k.d) {
+                JCharacter.getInstance().setState(JCharacter.state.IDLE);
 
             }
 
