@@ -41,8 +41,9 @@ public class Main {
         map = new JLabel(MapImage);
         playerCoordinate  = new Coordinate(characterStartX, characterStartY);
 
-        // Add character and frame to window
+        // Adding to window
         frame.add(JCharacter.getInstance().get());
+        frame.add(JCompanion.getInstance().get());
         frame.add(map);
 
         // Add key listener
@@ -85,6 +86,7 @@ public class Main {
             moveAll();
             resetBounds();
             JCharacter.getInstance().update();
+            JCompanion.getInstance().update(playerCoordinate.getX(), playerCoordinate.getY());
             wait(10);
 
         }
@@ -97,6 +99,7 @@ public class Main {
         wantedY = (frame.getSize().height / 2) - characterYSize / 2;
 
         JCharacter.getInstance().get().setBounds(wantedX, wantedY, characterXSize, characterYSize);
+        JCompanion.getInstance().get().setBounds(JCompanion.getInstance().getLocation().getX() - playerCoordinate.getX() + wantedX, JCompanion.getInstance().getLocation().getY() - playerCoordinate.getY() + wantedY, JCompanion.width, JCompanion.height);
         map.setBounds(0-playerCoordinate.getX() + wantedX, 0-playerCoordinate.getY() + wantedY, 7090, 4120);
 
     }
