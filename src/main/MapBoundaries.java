@@ -3,23 +3,28 @@ package main;
 import javax.net.ssl.SSLKeyException;
 import java.util.ArrayList;
 
-public class SkeldMapBoundaries {
+public class MapBoundaries {
 
     private static ArrayList<Coordinate> coords;
     private static boolean[][] map;
 
-    private SkeldMapBoundaries() {}
+    private MapBoundaries() {}
 
-    public static void setBoundaries() {
+    private static void setBoundaries() {
         coords = new ArrayList<Coordinate>();
         map = new boolean[7090][4120];
 
-        coords.add(new Coordinate(2974, 533));
-        coords.add(new Coordinate(3282, 223));
-        coords.add(new Coordinate(4277, 221));
-        coords.add(new Coordinate(4730, 673));
-        coords.add(new Coordinate(4731, 917));
-        coords.add(new Coordinate(5189, 925));
+    }
+
+    public static void setSkeldBoundaries() {
+        setBoundaries();
+        coords.add(new Coordinate(2973, 532));
+        coords.add(new Coordinate(3282, 220));
+        coords.add(new Coordinate(4276, 220));
+        coords.add(new Coordinate(4731, 673));
+        coords.add(new Coordinate(4731, 916));
+        coords.add(new Coordinate(4741, 916));
+        coords.add(new Coordinate(4786, 957));
 
     }
 

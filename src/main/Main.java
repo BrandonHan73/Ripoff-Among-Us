@@ -77,8 +77,8 @@ public class Main {
         });
 
         // Setting boundaries
-        SkeldMapBoundaries.setBoundaries();
-        SkeldMapBoundaries.drawBoundaries();
+        MapBoundaries.setSkeldBoundaries();
+        MapBoundaries.drawBoundaries();
 
         // Game loop
         while(true) {
@@ -132,7 +132,7 @@ public class Main {
         else {
             for(int i = endCoords.getX() + ((characterXSize - shadowWidth) / 2); i < endCoords.getX() + characterXSize - ((characterXSize - shadowWidth) / 2); i++) {
                 for(int j = endCoords.getY() + characterYSize - shadowHeight; j < endCoords.getY() + characterYSize; j++) {
-                    if(SkeldMapBoundaries.getLoc(i, j)) {
+                    if(MapBoundaries.getLoc(i, j)) {
                         permission = false;
                         break;
 
