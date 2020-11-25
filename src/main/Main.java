@@ -26,8 +26,6 @@ public class Main {
         JLabel map = new JLabel(Map);
         frame.add(map);
 
-        frame.add(JCharacter.getInstance().get());
-
         frame.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
 
@@ -38,11 +36,13 @@ public class Main {
 
                 switch(key) {
                     case 'w': k.w = true; break;
-                    case 'a': k.a = true; l.setIcon(CharacterLeft); break;
+                    case 'a': k.a = true; JCharacter.getInstance().setDirection(JCharacter.direction.LEFT); break;
                     case 's': k.s = true; break;
-                    case 'd': k.d = true; l.setIcon(CharacterRight); break;
+                    case 'd': k.d = true; JCharacter.getInstance().setDirection(JCharacter.direction.RIGHT); break;
 
                 }
+
+                JCharacter.getInstance().setState(JCharacter.state.WALKING);
 
             }
 
@@ -85,7 +85,7 @@ public class Main {
             wantedY = (frame.getSize().height / 2) - 120;
             wantedX = (frame.getSize().width / 2) - 110;
 
-            JCharacter.getInstance().get().setBounds(100, 100, 87, 120);
+            JCharacter.getInstance().get().setBounds(wantedX, wantedY, 87, 120);
             l.setBounds(wantedX, wantedY, 220, 241);
             map.setBounds(c.getX(), c.getY(), 7090, 4120);
 

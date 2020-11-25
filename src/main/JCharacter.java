@@ -32,7 +32,7 @@ public class JCharacter {
     private JCharacter() {
 
         currentDirection = direction.RIGHT;
-        currentState = state.WALKING;
+        currentState = state.IDLE;
 
         walkLeft[0] = new ImageIcon("src/images/walking/left/left-front.png");
         walkLeft[1] = new ImageIcon("src/images/walking/left/right-passing.png");
@@ -74,8 +74,7 @@ public class JCharacter {
 
         if(currentState == state.WALKING) {
             if(Math.abs(time - currentTime) > 150) {
-                frame++;
-                if(frame == 4) frame = 0;
+                frame = (frame + 1) % 4;
                 time = currentTime;
 
             }
