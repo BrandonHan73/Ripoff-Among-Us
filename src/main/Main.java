@@ -18,14 +18,12 @@ public class Main {
         final ImageIcon Map = new ImageIcon("D:/Pictures/among-us-map.jpg");
 
         Keyboard k = new Keyboard();
-        Coordinate c = new Coordinate(-100, 100);
+        Coordinate c = new Coordinate(-2600, -300);
 
         JLabel l = new JLabel(CharacterRight);
-        l.setBounds(100, 100, 220, 241);
         frame.add(l);
 
         JLabel map = new JLabel(Map);
-        map.setBounds(-1000, -1000, 7090, 4120);
         frame.add(map);
 
         frame.addKeyListener(new KeyListener() {
@@ -60,9 +58,6 @@ public class Main {
             }
 
         });
-
-        l.setBounds(100, 101, 220, 241);
-        map.setBounds(-1001, -1000, 7090, 4120);
 
         int speed = 5;
 
