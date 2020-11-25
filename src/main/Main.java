@@ -13,7 +13,7 @@ public class Main {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        final ImageIcon CharacterRight = new ImageIcon("src/images/idle/right.png");
+        final ImageIcon CharacterRight = new ImageIcon("src/images/walking/right/right-front.png");
         final ImageIcon CharacterLeft = new ImageIcon("src/images/idle/left.png");
         final ImageIcon Map = new ImageIcon("src/images/map.jpg");
 
