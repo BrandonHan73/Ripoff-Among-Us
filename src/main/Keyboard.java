@@ -12,4 +12,9 @@ public class Keyboard {
 
     }
 
+    public String toString() {
+        return "w: " + w + ";  a: " + a + ";  s: " + s + ";  d: " + d;
+
+    }
+
 }

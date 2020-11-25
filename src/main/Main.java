@@ -6,127 +6,107 @@ import java.awt.event.KeyListener;
 
 public class Main {
 
+    // Constants
+    static final ImageIcon MapImage = new ImageIcon("src/images/map.jpg");
+    static final int characterSpeed = 5;
+    static final double rt2 = Math.sqrt(2);
+
+    // Main variables
+    private static JFrame frame;
+    private static JLabel map;
+    private static Keyboard keyboardState;
+    private static Coordinate mapCoordinate;
+
     public static void main(String[] args) {
-        JFrame frame = new JFrame("window");
+
+        // Set up window
+        frame = new JFrame("window");
         frame.setVisible(true);
         frame.setSize(1900, 1100);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        final ImageIcon CharacterRight = new ImageIcon("src/images/idle/right.png");
-        final ImageIcon CharacterLeft = new ImageIcon("src/images/idle/left.png");
-        final ImageIcon Map = new ImageIcon("src/images/map.jpg");
+        // Keyboard
+        keyboardState = new Keyboard();
 
-        Keyboard k = new Keyboard();
-        Coordinate c = new Coordinate(-2600, -300);
+        // Background
+        map = new JLabel(MapImage);
+        mapCoordinate  = new Coordinate(-2600, -300);
 
-        JLabel l = new JLabel(CharacterRight);
+        // Add character and frame to window
         frame.add(JCharacter.getInstance().get());
-
-        JLabel map = new JLabel(Map);
         frame.add(map);
 
+        // Add key listener
         frame.addKeyListener(new KeyListener() {
-            public void keyTyped(KeyEvent e) {
-
-            }
+            public void keyTyped(KeyEvent e) {}
 
             public void keyPressed(KeyEvent e) {
-                char key = e.getKeyChar();
-
-                switch(key) {
-                    case 'w': k.w = true; break;
-                    case 'a': k.a = true; JCharacter.getInstance().setDirection(JCharacter.direction.LEFT); break;
-                    case 's': k.s = true; break;
-                    case 'd': k.d = true; JCharacter.getInstance().setDirection(JCharacter.direction.RIGHT); break;
+                switch(e.getKeyChar()) {
+                    case 'w': keyboardState.w = true; break;
+                    case 'a': keyboardState.a = true; JCharacter.getInstance().setDirection(JCharacter.direction.LEFT); break;
+                    case 's': keyboardState.s = true; break;
+                    case 'd': keyboardState.d = true; JCharacter.getInstance().setDirection(JCharacter.direction.RIGHT); break;
+                    case 'q': System.exit(0);
 
                 }
-
                 JCharacter.getInstance().setState(JCharacter.state.WALKING);
 
             }
 
             public void keyReleased(KeyEvent e) {
-                char key = e.getKeyChar();
-
-                switch(key) {
-                    case 'w': k.w = false; break;
-                    case 'a': k.a = false; break;
-                    case 's': k.s = false; break;
-                    case 'd': k.d = false; break;
+                switch(e.getKeyChar()) {
+                    case 'w': keyboardState.w = false; break;
+                    case 'a': keyboardState.a = false; break;
+                    case 's': keyboardState.s = false; break;
+                    case 'd': keyboardState.d = false; break;
 
                 }
+                if(!keyboardState.w && !keyboardState.a && !keyboardState.s && !keyboardState.d) JCharacter.getInstance().setState(JCharacter.state.IDLE);
 
             }
 
         });
 
-        int speed = 5;
-
+        // Game loop
         while(true) {
-            if(k.w) {
-                if (!k.a && !k.d) {
-                    c.move(0, speed);
-
-                }
-                if(k.a) {
-                    c.move((speed / Math.sqrt(2)), (speed / Math.sqrt(2)));
-
-                }
-                if(k.d) {
-                    c.move(0-(speed / Math.sqrt(2)), (speed / Math.sqrt(2)));
-
-                }
-
-            }
-            if(k.s) {
-                if (!k.a && !k.d) {
-                    c.move(0, 0-speed);
-
-                }
-                if(k.a) {
-                    c.move((speed / Math.sqrt(2)), 0-(speed / Math.sqrt(2)));
-
-                }
-                if(k.d) {
-                    c.move(0-(speed / Math.sqrt(2)), 0-(speed / Math.sqrt(2)));
-
-                }
-
-            }
-
-            if(!k.w && !k.s) {
-                if(k.a) {
-                    c.move(speed, 0);
-
-                }
-                if(k.d) {
-                    c.move(0-speed, 0);
-
-                }
-
-            }
-
-            if(!k.w && !k.a && !k.s && !k.d) {
-                JCharacter.getInstance().setState(JCharacter.state.IDLE);
-
-            }
-
-            int wantedX, wantedY;
-            wantedY = (frame.getSize().height / 2) - 120;
-            wantedX = (frame.getSize().width / 2) - 110;
-
-            JCharacter.getInstance().get().setBounds(wantedX, wantedY, 87, 120);
-            l.setBounds(wantedX, wantedY, 220, 241);
-            map.setBounds(c.getX(), c.getY(), 7090, 4120);
-
+            moveAll();
+            resetBounds();
             JCharacter.getInstance().update();
+            wait(10);
 
-            long time = System.currentTimeMillis();
-            while(true) {
-                if(Math.abs(System.currentTimeMillis() - time) > 10) break;
+        }
 
-            }
+    }
+
+    public static void resetBounds() {
+        int wantedX, wantedY;
+        wantedY = (frame.getSize().height / 2) - 120;
+        wantedX = (frame.getSize().width / 2) - 110;
+
+        JCharacter.getInstance().get().setBounds(wantedX, wantedY, 87, 120);
+        map.setBounds(mapCoordinate.getX(), mapCoordinate.getY(), 7090, 4120);
+
+    }
+
+    public static void wait(int milliseconds) {
+        long time = System.currentTimeMillis();
+        while(true) {
+            if(Math.abs(System.currentTimeMillis() - time) > milliseconds) break;
+
+        }
+
+    }
+
+    public static void moveAll() {
+        if(!((keyboardState.w == keyboardState.a) && (keyboardState.s == keyboardState.d) && (keyboardState.w == keyboardState.s))) {
+            double wantedSpeed;
+            if ((keyboardState.w != keyboardState.s) && (keyboardState.a != keyboardState.d)) wantedSpeed = characterSpeed / rt2;
+            else wantedSpeed = characterSpeed;
+            if(keyboardState.w) mapCoordinate.move(0, wantedSpeed);
+            if(keyboardState.a) mapCoordinate.move(wantedSpeed, 0);
+            if(keyboardState.s) mapCoordinate.move(0, 0-wantedSpeed);
+            if(keyboardState.d) mapCoordinate.move(0-wantedSpeed, 0);
 
         }
 

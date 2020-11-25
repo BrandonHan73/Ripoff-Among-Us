@@ -62,6 +62,21 @@ public class JCharacter {
 
         long currentTime = System.currentTimeMillis();
 
+        if(currentState == state.WALKING) {
+            if(Math.abs(time - currentTime) > 150) {
+                frame = (frame + 1) % 4;
+                time = currentTime;
+
+            }
+
+        }
+
+        updateGraphics();
+
+    }
+
+    public void updateGraphics() {
+
         if (currentState == state.IDLE) {
             switch(currentDirection) {
                 case LEFT: output.setIcon(idleLeft); break;
@@ -72,11 +87,6 @@ public class JCharacter {
         }
 
         if(currentState == state.WALKING) {
-            if(Math.abs(time - currentTime) > 150) {
-                frame = (frame + 1) % 4;
-                time = currentTime;
-
-            }
             switch(currentDirection) {
                 case LEFT: output.setIcon(walkLeft[frame]); break;
                 case RIGHT: output.setIcon(walkRight[frame]); break;
@@ -84,6 +94,7 @@ public class JCharacter {
             }
 
         }
+
 
     }
 
