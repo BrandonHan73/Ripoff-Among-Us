@@ -33,15 +33,15 @@ public class JCharacter {
         currentDirection = direction.RIGHT;
         currentState = state.IDLE;
 
-        walkLeft[0] = new ImageIcon("src/images/walking/left/left-front.png");
-        walkLeft[1] = new ImageIcon("src/images/walking/left/right-passing.png");
-        walkLeft[2] = new ImageIcon("src/images/walking/left/right-front.png");
-        walkLeft[3] = new ImageIcon("src/images/walking/left/left-passing.png");
+        walkLeft[0] = new ImageIcon("src/images/character/walking/left/front-forward.png");
+        walkLeft[1] = new ImageIcon("src/images/character/walking/left/back-passing.png");
+        walkLeft[2] = new ImageIcon("src/images/character/walking/left/back-forward.png");
+        walkLeft[3] = new ImageIcon("src/images/character/walking/left/front-passing.png");
 
-        walkRight[0] = new ImageIcon("src/images/character/walking/right/left-front.png");
-        walkRight[1] = new ImageIcon("src/images/character/walking/right/right-passing.png");
-        walkRight[2] = new ImageIcon("src/images/character/walking/right/right-front.png");
-        walkRight[3] = new ImageIcon("src/images/character/walking/right/left-passing.png");
+        walkRight[0] = new ImageIcon("src/images/character/walking/right/front-forward.png");
+        walkRight[1] = new ImageIcon("src/images/character/walking/right/back-passing.png");
+        walkRight[2] = new ImageIcon("src/images/character/walking/right/back-forward.png");
+        walkRight[3] = new ImageIcon("src/images/character/walking/right/front-passing.png");
 
         output.setBounds(100, 100, 87, 120);
 
