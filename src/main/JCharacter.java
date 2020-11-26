@@ -6,8 +6,8 @@ public class JCharacter {
 
     private JLabel output = new JLabel();
 
-    private final ImageIcon idleLeft = new ImageIcon("src/images/idle/left.png");
-    private final ImageIcon idleRight = new ImageIcon("src/images/idle/right.png");
+    private final ImageIcon idleLeft = new ImageIcon("src/images/character/idle/left.png");
+    private final ImageIcon idleRight = new ImageIcon("src/images/character/idle/right.png");
 
     private long time;
     private int frame;
@@ -38,10 +38,10 @@ public class JCharacter {
         walkLeft[2] = new ImageIcon("src/images/walking/left/right-front.png");
         walkLeft[3] = new ImageIcon("src/images/walking/left/left-passing.png");
 
-        walkRight[0] = new ImageIcon("src/images/walking/right/left-front.png");
-        walkRight[1] = new ImageIcon("src/images/walking/right/right-passing.png");
-        walkRight[2] = new ImageIcon("src/images/walking/right/right-front.png");
-        walkRight[3] = new ImageIcon("src/images/walking/right/left-passing.png");
+        walkRight[0] = new ImageIcon("src/images/character/walking/right/left-front.png");
+        walkRight[1] = new ImageIcon("src/images/character/walking/right/right-passing.png");
+        walkRight[2] = new ImageIcon("src/images/character/walking/right/right-front.png");
+        walkRight[3] = new ImageIcon("src/images/character/walking/right/left-passing.png");
 
         output.setBounds(100, 100, 87, 120);
 
